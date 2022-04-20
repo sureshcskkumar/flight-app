@@ -1,6 +1,9 @@
 package com.flightapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.flightapp.config.JwtUtil;
@@ -37,7 +39,15 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public ResponseEntity<AppUser> save(UserDTO user) {
+	public ResponseEntity<?> save(UserDTO user) {
+		
+		List<AppUser> userList = userRepository.findByEmail(user.getEmail());
+		
+		if (userList != null && userList.size() > 0) {
+			return new ResponseEntity<>("User with the email " + user.getEmail() + " already exists!",
+					HttpStatus.BAD_REQUEST);
+		}
+		
 		AppUser newUser = new AppUser();
 		newUser.setEmail(user.getEmail());
 		newUser.setPassword(passwordEncoder.encode(user.getPassword()));

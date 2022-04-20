@@ -1,11 +1,13 @@
 package com.flightapp.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.flightapp.model.AppUser;
 
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
-	AppUser findByEmail(String email);
+	List<AppUser> findByEmail(String email);
 
 }

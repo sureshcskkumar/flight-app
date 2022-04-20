@@ -25,11 +25,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<SimpleGrantedAuthority> roles = null;
 		
 		String userEmail = username;
-		AppUser user = userRepository.findByEmail(userEmail);
-		if (user != null) {
-			roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
-			return new User(user.getEmail(), user.getPassword(), roles);
+		List<AppUser> userList = userRepository.findByEmail(userEmail);
+		if (userList != null && userList.size() > 0) {
+			AppUser user = userList.get(0);
+			if (user != null) {
+				roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+				return new User(user.getEmail(), user.getPassword(), roles);
+			}	
 		}
+		
 		throw new UsernameNotFoundException("User not found with the email " + userEmail);	
 	}
 
