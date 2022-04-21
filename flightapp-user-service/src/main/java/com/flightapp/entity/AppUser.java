@@ -1,4 +1,4 @@
-package com.flightapp.model;
+package com.flightapp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

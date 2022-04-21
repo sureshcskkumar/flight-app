@@ -1,0 +1,41 @@
+Admin Register (if allowed):
+{
+	"email": "admin@flightapp.com",
+	"password": "admin",
+	"role": "ROLE_ADMIN",
+	"firstName": "adminfn",
+	"lastName": "adminln"
+}
+
+Admin Register (insert into DB):
+insert into users (email, password, role, first_name, last_name)
+	values('admin@flightapp.com', '$2a$10$tl1w9QkfENrz/nk5TOtS2O2KWYotBc04Fm/tqIuKrFwKvBUP8Y596', 'ROLE_ADMIN', 'adminfn', 'adminln');
+
+admin bcrypt value:
+$2a$10$tl1w9QkfENrz/nk5TOtS2O2KWYotBc04Fm/tqIuKrFwKvBUP8Y596
+
+
+
+Admin Login:
+{
+	"email": "admin@flightapp.com",
+	"password": "admin"
+}
+
+User Register:
+{
+	"email": "user1@flightapp.com",
+	"password": "user1",
+	"role": "ROLE_USER",
+	"firstName": "user1fn",
+	"lastName": "user1ln"
+}
+
+
+User Login:
+{
+	"email": "user1@flightapp.com",
+	"password": "user1",
+}
+
+

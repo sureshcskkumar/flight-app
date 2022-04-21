@@ -15,13 +15,14 @@ import com.flightapp.service.UserService;
 
 
 @RestController
+@RequestMapping("/api/v1.0")
 public class AuthenticationConroller {
 
 
 	@Autowired
 	private UserService userService;
 
-	@PostMapping("/authenticate")
+	@PostMapping("/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
 			throws Exception {
 		return userService.createAuthenticationToken(authenticationRequest);

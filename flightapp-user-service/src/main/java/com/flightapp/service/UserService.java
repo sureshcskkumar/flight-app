@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.flightapp.config.JwtUtil;
-import com.flightapp.model.AppUser;
+import com.flightapp.entity.AppUser;
 import com.flightapp.model.AuthenticationRequest;
 import com.flightapp.model.AuthenticationResponse;
 import com.flightapp.model.UserDTO;
