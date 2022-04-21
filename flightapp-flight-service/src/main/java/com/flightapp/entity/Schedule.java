@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,12 +31,13 @@ public class Schedule {
 	
 	private String destination;
 	
-	Date startTime;
+	@Temporal(TemporalType.TIME)
+	Date departureTime;
 	
-	public Schedule(long airlineId, String source, String destination, Date startTime) {
+	public Schedule(long airlineId, String source, String destination, Date departureTime) {
 		this.airlineId = airlineId;
 		this.source = source;
 		this.destination = destination;
-		this.startTime = startTime;
+		this.departureTime = departureTime;
 	}
 }

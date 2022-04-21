@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flightapp.entity.Airline;
+import com.flightapp.entity.Schedule;
 import com.flightapp.service.AirlineService;
 
 @RestController
@@ -20,5 +21,10 @@ public class AirlineController {
 	@PostMapping("/register")
 	public ResponseEntity<Airline> registerAirline(@RequestBody Airline airline) {
 		return airlineService.registerAirline(airline);
+	}
+	
+	@PostMapping("/schedules")
+	public ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
+		return airlineService.addSchedule(schedule);
 	}
 }
