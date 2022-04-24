@@ -12,7 +12,7 @@ import com.flightapp.entity.Schedule;
 import com.flightapp.service.AirlineService;
 
 @RestController
-@RequestMapping("/flight")
+@RequestMapping("/airline")
 public class AirlineController {
 	
 	@Autowired
