@@ -24,5 +24,4 @@ public class Airline {
 
 	boolean blocked;
 	
-
 }

@@ -21,19 +21,17 @@ public class AirlineServiceImpl implements AirlineService {
     private RestTemplate template;
 	
 	@Override
-	public ResponseEntity<Airline> registerAirline(Airline airline) {
+	public ResponseEntity<Airline> registerAirline(HttpEntity<Airline> data) {
 
 		try {
 
 			String url = FLIGHTAPPURL + AIRLINE_REGISTER;
-			HttpMethod method = HttpMethod.POST;
-			HttpEntity<Airline> requestEntity = new Req
-			ResponseEntity<String> response = template.exchange(url, method, airline, Airline.class);
+			ResponseEntity<Airline> response = template.exchange(url, HttpMethod.POST, data, Airline.class);
 			return response;
 		} catch (HttpStatusCodeException e) {
-			return new ResponseEntity<>(e.getMessage(), e.getStatusCode());
+			return new ResponseEntity(e.getMessage(), e.getStatusCode());
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 
 	}

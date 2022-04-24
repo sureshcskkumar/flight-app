@@ -20,8 +20,8 @@ public class AirlineController {
 	private AirlineService airlineService;
 
 	@PostMapping("/flight/register")
-	public ResponseEntity<String> registerAirline(@RequestBody Airline airline) {
-		return airlineService.registerAirline(null);
+	public ResponseEntity<Airline> registerAirline(final HttpEntity<Airline> data) {
+		return airlineService.registerAirline(data);
 	}
 	
 	

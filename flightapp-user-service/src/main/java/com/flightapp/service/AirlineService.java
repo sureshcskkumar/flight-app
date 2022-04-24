@@ -9,7 +9,7 @@ public interface AirlineService {
 
 	// ResponseEntity<Airline> registerAirline(Airline airline);
 	
-	ResponseEntity<Airline> registerAirline(Airline airline);
+	ResponseEntity<Airline> registerAirline(HttpEntity<Airline> data);
 	
 
 }
