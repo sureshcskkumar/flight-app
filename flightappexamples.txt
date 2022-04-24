@@ -1,3 +1,11 @@
+URLs:
+User Service:   http://localhost:8081
+Admin Service:  http://localhost:8082
+API Gateway:    http://localhost:6666
+Eureka Server:  http://localhost:8761
+
+
+
 Admin Register
 http://localhost:8081/api/v1.0/register
 
@@ -70,9 +78,13 @@ User Login:
 
 
 Flight Register:
+(Using gateway api:)
+http://localhost:6666/api/v1.0/flight/register
 
-
-
-
+{
+    "name": "airline 2 Indigo",
+    "contactNumber": "1111111111",
+    "blocked": "false"
+}
 
 
