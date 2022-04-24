@@ -12,6 +12,9 @@ import lombok.Setter;
 public class Passenger {
 
 	private String name;
-	private String ageCategory;
-		
+
+	private Gender gender;
+
+	private int age;
+
 }

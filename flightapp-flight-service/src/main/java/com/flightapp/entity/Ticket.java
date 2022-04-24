@@ -1,6 +1,7 @@
 package com.flightapp.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,27 +23,17 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	private long airlineId;
-	
+
 	private String name;
 
-
-	private String ageCategory;
-	
 	private String source;
-	
+
 	private String destination;
-	
-	Date flightTime;
-	
-	public Ticket(long airlineId, String name, String ageCategory, String source, String destination, Date flightTime) {
-		this.airlineId = airlineId;
-		this.name = name;
-		this.ageCategory = ageCategory;
-		this.source = source;
-		this.destination = destination;
-		this.flightTime = flightTime;
-	}
-	
+
+	private LocalDate flightDate;
+
+	private LocalTime flightTime;
+
 }

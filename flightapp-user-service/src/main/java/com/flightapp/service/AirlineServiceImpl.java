@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import com.flightapp.model.Airline;
+
 @Service
 public class AirlineServiceImpl implements AirlineService {
 
@@ -19,13 +21,14 @@ public class AirlineServiceImpl implements AirlineService {
     private RestTemplate template;
 	
 	@Override
-	public ResponseEntity<String> registerAirline(HttpEntity<String> data) {
+	public ResponseEntity<Airline> registerAirline(Airline airline) {
 
 		try {
 
 			String url = FLIGHTAPPURL + AIRLINE_REGISTER;
 			HttpMethod method = HttpMethod.POST;
-			ResponseEntity<String> response = template.exchange(url, method, data, String.class);
+			HttpEntity<Airline> requestEntity = new Req
+			ResponseEntity<String> response = template.exchange(url, method, airline, Airline.class);
 			return response;
 		} catch (HttpStatusCodeException e) {
 			return new ResponseEntity<>(e.getMessage(), e.getStatusCode());

@@ -1,4 +1,7 @@
-Admin Register (if allowed):
+Admin Register
+http://localhost:8081/api/v1.0/register
+
+If allowed:
 {
 	"email": "admin@flightapp.com",
 	"password": "admin",
@@ -15,13 +18,19 @@ admin bcrypt value:
 $2a$10$tl1w9QkfENrz/nk5TOtS2O2KWYotBc04Fm/tqIuKrFwKvBUP8Y596
 
 
-
+http://localhost:8081/api/v1.0/login
 Admin Login:
 {
 	"email": "admin@flightapp.com",
 	"password": "admin"
 }
 
+
+
+
+
+
+http://localhost:8081/api/v1.0/register
 User Register:
 {
 	"email": "user1@flightapp.com",
@@ -31,11 +40,39 @@ User Register:
 	"lastName": "user1ln"
 }
 
+User Register:
+{
+	"email": "user2@flightapp.com",
+	"password": "user2",
+	"role": "ROLE_USER",
+	"firstName": "user2fn",
+	"lastName": "user2ln"
+}
 
+http://localhost:8081/api/v1.0/login
 User Login:
 {
 	"email": "user1@flightapp.com",
 	"password": "user1",
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Flight Register:
+
+
+
+
 
 
