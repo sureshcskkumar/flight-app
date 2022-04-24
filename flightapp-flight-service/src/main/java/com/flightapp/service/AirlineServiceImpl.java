@@ -55,5 +55,49 @@ public class AirlineServiceImpl implements AirlineService {
 		}
 		return new ResponseEntity<>(scheduleRepository.save(schedule), HttpStatus.OK);
 	}
+
+
+	@Override
+	public ResponseEntity<List<Airline>> findAll() {
+		return new ResponseEntity<>(airlineRepository.findAll(), HttpStatus.OK);
+	}
+
+
+	@Override
+	public ResponseEntity<List<Airline>> findByName(String airlineName) {
+		return new ResponseEntity<>(airlineRepository.findByName(airlineName), HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<Airline> updateAirline(Airline airline) {
+		Objects.requireNonNull(airline);
+		Optional<Airline> airlineOptional = airlineRepository.findById(airline.getId());
+		if (airlineOptional.isPresent()) {
+			return new ResponseEntity<>(airlineRepository.save(airline), HttpStatus.OK);
+		}
+		return new ResponseEntity("The airline that you are trying to update does not exist!", HttpStatus.BAD_REQUEST);
+	}
+
+	@Override
+	public ResponseEntity<String> deleteAirline(long airlineId) {
+		
+		Optional<Airline> airlineOptional = airlineRepository.findById(airlineId);
+		if (airlineOptional.isPresent()) {
+			airlineRepository.deleteById(airlineId);
+			return new ResponseEntity<>("Airline deleted successfully", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Airline does not exist", HttpStatus.BAD_REQUEST);
+		
+	}
+
+
+	@Override
+	public ResponseEntity<Airline> findById(long airlineId) {
+		Optional<Airline> airlineOptional = airlineRepository.findById(airlineId);
+		if (airlineOptional.isPresent()) {
+			return new ResponseEntity<>(airlineOptional.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity("Airline does not exist", HttpStatus.BAD_REQUEST);
+	}
 	
 }

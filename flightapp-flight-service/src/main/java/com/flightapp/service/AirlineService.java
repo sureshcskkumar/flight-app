@@ -1,5 +1,7 @@
 package com.flightapp.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.flightapp.entity.Airline;
@@ -10,5 +12,15 @@ public interface AirlineService {
 	ResponseEntity<Airline> registerAirline(Airline airline);
 
 	ResponseEntity<Schedule> addSchedule(Schedule schedule);
+
+	ResponseEntity<List<Airline>> findAll();
+
+	ResponseEntity<List<Airline>> findByName(String airlineName);
+
+	ResponseEntity<String> deleteAirline(long airlineId);
+
+	ResponseEntity<Airline> updateAirline(Airline airline);
+
+	ResponseEntity<Airline> findById(long airlineId);
 
 }
