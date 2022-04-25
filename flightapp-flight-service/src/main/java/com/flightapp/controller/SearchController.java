@@ -3,6 +3,7 @@ package com.flightapp.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +24,22 @@ public class SearchController {
 	public ResponseEntity<SearchResult> search(
 			@RequestParam("fromPlace") String fromPlace,
 			@RequestParam("toPlace") String toPlace,
-			@RequestParam("flightDate") LocalDate flightDate,
-			@RequestParam(value = "flightDate", required = false) LocalDate returnDate
+			@RequestParam("flightDate") String flightDate,
+			@RequestParam(value = "returnDate", required = false) String returnDate
 			){
-		return searchService.search(fromPlace, toPlace, flightDate, returnDate);
+
+		LocalDate flightDateAsDate = null;
+		LocalDate returnDateAsDate = null;
+		try {
+			flightDateAsDate = LocalDate.parse(flightDate);
+			if (returnDate!=null && !returnDate.isEmpty()) {
+				returnDateAsDate = LocalDate.parse(returnDate);	
+			}
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+		}
+		
+		return searchService.search(fromPlace, toPlace, flightDateAsDate, returnDateAsDate);
 	}
 	
 }

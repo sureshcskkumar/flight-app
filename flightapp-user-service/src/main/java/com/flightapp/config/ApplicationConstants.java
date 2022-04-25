@@ -6,5 +6,5 @@ public final class ApplicationConstants {
 	// String FLIGHTAPPURL = http://localhost:6666 
 	
 	public static final String FLIGHTAPPURL = "lb://FLIGHTAPP-FLIGHT-SERVICE";
-	public static final String AIRLINE_REGISTER = "/airline/register";
+	public static final String AIRLINE_REGISTER = "/flight/airline/register";
 }

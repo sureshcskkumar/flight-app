@@ -35,7 +35,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		List<SearchResultEntity> returnSearchEntities = null;
 		if (returnDate!=null) {
-			returnSearchEntities = searchResult(toPlace, fromPlace, flightDate);
+			returnSearchEntities = searchResult(toPlace, fromPlace, returnDate);
 		}
 		
 		return new ResponseEntity<>(new SearchResult(fromPlace, toPlace, flightDate, returnDate, flightSearchEntities, returnSearchEntities), HttpStatus.OK);
@@ -46,7 +46,7 @@ public class SearchServiceImpl implements SearchService {
 		List<Schedule> flightSchedules = scheduleRepository.searchFlights(fromPlace, toPlace, flightDate);
 
 		List<SearchResultEntity> searchResulList = new ArrayList<>();
-		if (flightSchedules == null || flightSchedules.size() <= 0) {
+		if (flightSchedules != null && flightSchedules.size() > 0) {
 			for (Schedule schedule : flightSchedules) {
 				Optional<Airline> airlineOptional = airlineRepository.findById(schedule.getAirlineId());
 				if (airlineOptional.isPresent()) {

@@ -79,10 +79,12 @@ User Login:
 
 Flight Register:
 (Using gateway api:)
-http://localhost:6666/api/v1.0/flight/airline/register
+http://localhost:8081/api/v1.0/airline/register
+or
+http://localhost:6666/api/v1.0/airline/register
 
 {
-    "name": "airline 2 Indigo",
+    "name": "Indigo",
     "contactNumber": "1111111111",
     "blocked": "false"
 }
@@ -91,7 +93,7 @@ http://localhost:6666/api/v1.0/flight/airline/register
 
 
 Add Schedule:
-http://localhost:6666/api/v1.0/flight/airline/schedule/add
+http://localhost:6666/flight/airline/schedule/add
 {
     "airlineId": 1,
     "source": "Bangalore",
