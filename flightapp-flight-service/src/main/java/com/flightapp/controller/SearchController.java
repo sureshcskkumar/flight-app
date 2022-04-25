@@ -33,7 +33,7 @@ public class SearchController {
 		try {
 			flightDateAsDate = LocalDate.parse(flightDate);
 			if (returnDate!=null && !returnDate.isEmpty()) {
-				returnDateAsDate = LocalDate.parse(returnDate);	
+				returnDateAsDate = LocalDate.parse(returnDate);
 			}
 		} catch (Exception e) {
 			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
