@@ -33,5 +33,4 @@ public class SearchResultEntity {
 		this.ticketCost = schedule.getTicketCost();
 	}
 
-	
 }

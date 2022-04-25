@@ -43,6 +43,8 @@ public class Schedule {
 
 	private int numberOfSeats;
 	
+	private int numberOfVacantSeats;
+	
 	private double ticketCost;
 
 }

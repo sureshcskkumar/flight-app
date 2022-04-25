@@ -15,6 +15,8 @@ public class Passenger {
 
 	private Gender gender;
 
-	private int age;
+	private AgeGroup ageGroup;
+	
+	private MealOption mealOption;
 
 }
