@@ -17,7 +17,7 @@ public class AirlineController {
 	@Autowired
 	private AirlineService airlineService;
 
-	@PostMapping("/airline/register")
+	@PostMapping("/flight/airline/register")
 	public ResponseEntity<Airline> registerAirline(final HttpEntity<Airline> data) {
 		return airlineService.registerAirline(data);
 	}

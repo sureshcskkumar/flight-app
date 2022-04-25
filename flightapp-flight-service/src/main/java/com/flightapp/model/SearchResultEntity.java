@@ -15,6 +15,8 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SearchResultEntity {
 
+	private long scheduleId;
+	
 	private String airlineName;
 	
 	private LocalTime startTime;
@@ -23,8 +25,9 @@ public class SearchResultEntity {
 	
 	private double ticketCost;
 
-	public SearchResultEntity(String airlineName, Schedule schedule) {
-		this.airlineName = airlineName;
+	public SearchResultEntity(Schedule schedule) {
+		this.scheduleId = schedule.getId();
+		this.airlineName = schedule.getAirline().getName();
 		this.startTime = schedule.getStartTime();
 		this.endTime = schedule.getEndTime();
 		this.ticketCost = schedule.getTicketCost();

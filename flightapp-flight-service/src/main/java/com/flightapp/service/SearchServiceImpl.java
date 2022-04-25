@@ -48,10 +48,7 @@ public class SearchServiceImpl implements SearchService {
 		List<SearchResultEntity> searchResulList = new ArrayList<>();
 		if (flightSchedules != null && flightSchedules.size() > 0) {
 			for (Schedule schedule : flightSchedules) {
-				Optional<Airline> airlineOptional = airlineRepository.findById(schedule.getAirlineId());
-				if (airlineOptional.isPresent()) {
-					searchResulList.add(new SearchResultEntity(airlineOptional.get().getName(), schedule));
-				}
+					searchResulList.add(new SearchResultEntity(schedule));
 			}
 		}
 		return searchResulList;

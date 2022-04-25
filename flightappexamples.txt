@@ -5,6 +5,11 @@ API Gateway:    http://localhost:6666
 Eureka Server:  http://localhost:8761
 
 
+Databases in the DB:
+create database flightappflightservice;
+create database flightappuserservice;
+
+
 
 Admin Register
 http://localhost:8081/api/v1.0/register
@@ -19,7 +24,7 @@ If allowed:
 }
 
 Admin Register (insert into DB):
-insert into users (email, password, role, first_name, last_name)
+insert into flightappuserservice.users (email, password, role, first_name, last_name)
 	values('admin@flightapp.com', '$2a$10$tl1w9QkfENrz/nk5TOtS2O2KWYotBc04Fm/tqIuKrFwKvBUP8Y596', 'ROLE_ADMIN', 'adminfn', 'adminln');
 
 admin bcrypt value:
@@ -39,7 +44,7 @@ Admin Login:
 
 
 http://localhost:8081/api/v1.0/register
-User Register:
+User1 Register:
 {
 	"email": "user1@flightapp.com",
 	"password": "user1",
@@ -48,7 +53,7 @@ User Register:
 	"lastName": "user1ln"
 }
 
-User Register:
+User2 Register:
 {
 	"email": "user2@flightapp.com",
 	"password": "user2",
@@ -58,7 +63,12 @@ User Register:
 }
 
 http://localhost:8081/api/v1.0/login
-User Login:
+User1 Login:
+{
+	"email": "user1@flightapp.com",
+	"password": "user1",
+}
+User2 Login:
 {
 	"email": "user1@flightapp.com",
 	"password": "user1",
@@ -66,22 +76,11 @@ User Login:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Flight Register:
 (Using gateway api:)
-http://localhost:8081/api/v1.0/airline/register
+http://localhost:8081/api/v1.0/flight/airline/register
 or
-http://localhost:6666/api/v1.0/airline/register
+http://localhost:6666/api/v1.0/flight/airline/register
 
 {
     "name": "Indigo",
@@ -95,7 +94,12 @@ http://localhost:6666/api/v1.0/airline/register
 Add Schedule:
 http://localhost:6666/flight/airline/schedule/add
 {
-    "airlineId": 1,
+    "airline": {
+		"id": 1,
+		"name": "Indigo",
+		"contactNumber": "1111111111",
+		"blocked": "false"
+	},
     "source": "Bangalore",
     "destination": "Delhi",
 	"flightDate": "2022-04-29",
@@ -103,7 +107,20 @@ http://localhost:6666/flight/airline/schedule/add
 	"endTime": "15:30",
 	"numberOfSeats": 150
 }
-
+{
+    "airline": {
+		"id": 1,
+		"name": "Indigo",
+		"contactNumber": "1111111111",
+		"blocked": "false"
+	},
+    "source": "Delhi",
+    "destination": "Bangalore",
+	"flightDate": "2022-04-30",
+	"startTime": "10:30",
+	"endTime": "15:30",
+	"numberOfSeats": 150
+}
 
 
 
