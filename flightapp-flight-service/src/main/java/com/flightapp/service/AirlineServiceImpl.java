@@ -37,24 +37,7 @@ public class AirlineServiceImpl implements AirlineService {
 	}
 
 
-	@Override
-	public ResponseEntity<Schedule> addSchedule(Schedule schedule) {
 
-		Objects.requireNonNull(schedule);
-		Optional<Airline> airlineOptional = airlineRepository.findById(schedule.getAirlineId());
-		if (!airlineOptional.isPresent()) {
-			return new ResponseEntity("Airline does not exist! Schedule can be added only for existing airlines", HttpStatus.BAD_REQUEST);
-		}
-		
-		List<Schedule> scheduleList = scheduleRepository.findByAirlineIdAndDateTime(
-				schedule.getAirlineId(),
-				schedule.getFlightDate(),
-				schedule.getStartTime());
-		if (scheduleList != null && scheduleList.size()>0) {
-			return new ResponseEntity("Schedule already exists for the airline at the requested dtae and time! Please choose a different date or time", HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<>(scheduleRepository.save(schedule), HttpStatus.OK);
-	}
 
 
 	@Override

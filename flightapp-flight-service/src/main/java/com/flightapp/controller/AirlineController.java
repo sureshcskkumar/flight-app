@@ -30,7 +30,7 @@ public class AirlineController {
 	}
 
 	@GetMapping("/airline/list")
-	public ResponseEntity<List<Airline>> listAirline(@RequestBody Airline airline) {
+	public ResponseEntity<List<Airline>> listAirline() {
 		return airlineService.findAll();
 	}
 
@@ -50,10 +50,12 @@ public class AirlineController {
 		return airlineService.updateAirline(airline);
 	}
 
+	/*
 	@DeleteMapping("/airline/delete/{airlineId}")
 	public ResponseEntity<String> deleteAirline(@PathVariable long airlineId) {
 		return airlineService.deleteAirline(airlineId);
 	}
+	*/
 	
 
 	//*************************************************************************

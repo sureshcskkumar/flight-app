@@ -15,4 +15,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 	
 	@Query("select s from Schedule s where s.airlineId = ?1 and s.flightDate = ?2 and s.startTime = ?3")
 	public List<Schedule> findByAirlineIdAndDateTime(long airlineId, LocalDate date, LocalTime time);
+	
+	public List<Schedule> findByFlightDate(LocalDate date);
 }

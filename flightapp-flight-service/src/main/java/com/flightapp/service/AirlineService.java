@@ -11,8 +11,6 @@ public interface AirlineService {
 
 	ResponseEntity<Airline> registerAirline(Airline airline);
 
-	ResponseEntity<Schedule> addSchedule(Schedule schedule);
-
 	ResponseEntity<List<Airline>> findAll();
 
 	ResponseEntity<List<Airline>> findByName(String airlineName);

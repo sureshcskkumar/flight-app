@@ -79,7 +79,7 @@ User Login:
 
 Flight Register:
 (Using gateway api:)
-http://localhost:6666/api/v1.0/flight/register
+http://localhost:6666/api/v1.0/flight/airline/register
 
 {
     "name": "airline 2 Indigo",
@@ -88,3 +88,22 @@ http://localhost:6666/api/v1.0/flight/register
 }
 
 
+
+
+Add Schedule:
+http://localhost:6666/api/v1.0/flight/airline/schedule/add
+{
+    "airlineId": 1,
+    "source": "Bangalore",
+    "destination": "Delhi",
+	"flightDate": "2022-04-29",
+	"startTime": "10:30",
+	"endTime": "15:30",
+	"numberOfSeats": 150
+}
+
+
+
+
+Get Airline List:
+http://localhost:6666/api/v1.0/flight/airline/list
