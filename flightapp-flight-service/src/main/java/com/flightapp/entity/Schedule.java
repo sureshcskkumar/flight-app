@@ -37,5 +37,7 @@ public class Schedule {
 	private LocalTime endTime;
 
 	private int numberOfSeats;
+	
+	private double ticketCost;
 
 }

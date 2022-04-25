@@ -3,6 +3,7 @@ package com.flightapp.model;
 import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.flightapp.entity.Schedule;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,14 @@ public class SearchResultEntity {
 	
 	private LocalTime endTime;
 	
-	private int ticketCost;
-	
+	private double ticketCost;
+
+	public SearchResultEntity(String airlineName, Schedule schedule) {
+		this.airlineName = airlineName;
+		this.startTime = schedule.getStartTime();
+		this.endTime = schedule.getEndTime();
+		this.ticketCost = schedule.getTicketCost();
+	}
+
 	
 }
