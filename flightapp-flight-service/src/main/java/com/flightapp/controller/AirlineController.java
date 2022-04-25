@@ -63,6 +63,11 @@ public class AirlineController {
 	public ResponseEntity<Airline> blockAirline(@RequestBody Airline airline) {
 		return airlineService.registerAirline(airline);
 	}
+	
+	@PutMapping("/airline/unblock/{airlineId}")
+	public ResponseEntity<Airline> unblockAirline(@RequestBody Airline airline) {
+		return airlineService.registerAirline(airline);
+	}
 	//*************************************************************************
 
 }
