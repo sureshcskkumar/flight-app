@@ -66,6 +66,27 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		
+		
+		<!-- Kafka Producer dependencies - start -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- Kafka Producer dependencies - end -->
+		
+		<!-- Kafka Consumer dependencies - start -->
+		<!-- <dependency>
+    		<groupId>org.springframework.kafka</groupId>
+    		<artifactId>spring-kafka</artifactId>
+		</dependency> -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<!-- Kafka Consumer dependencies - end -->
+		
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

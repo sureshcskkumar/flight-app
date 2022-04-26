@@ -9,8 +9,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.flightapp.entity.BookedPassengerTicket;
 import com.flightapp.entity.Schedule;
 import com.flightapp.entity.Ticket;
 import com.flightapp.model.AgeGroup;
@@ -31,6 +33,11 @@ public class BookingServiceImpl implements BookingService {
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+	
+	@Autowired
+    private KafkaTemplate<String, BookedPassengerTicket> kafkaTemplate;
+	
+	private static final String TOPIC = "kafka_topic";
 	
 	@Override
 	public ResponseEntity<List<Ticket>> bookFlight(String userEmail, long scheduleId, BookingDetails bookingDetails) {
@@ -69,7 +76,13 @@ public class BookingServiceImpl implements BookingService {
 			tickets.add(ticket);
 		}
 		
+		
+		
 		tickets = ticketRepository.saveAll(tickets);
+		for (Ticket ticket: tickets) {
+			BookedPassengerTicket passengerTicket = new BookedPassengerTicket(ticket.getId(), ticket.getName(), LocalDateTime.now());
+			//kafkaTemplate.send(TOPIC, passengerTicket);
+		}
 		schedule.setNumberOfVacantSeats(schedule.getNumberOfVacantSeats() - adultAndChildPassengerCount);
 		scheduleRepository.save(schedule);
 
