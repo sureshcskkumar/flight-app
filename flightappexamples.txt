@@ -66,7 +66,7 @@ http://localhost:8081/api/v1.0/login
 User1 Login:
 {
 	"email": "user1@flightapp.com",
-	"password": "user1",
+	"password": "user1"
 }
 User2 Login:
 {
@@ -136,6 +136,7 @@ http://localhost:6666/flight/airline/list
 
 Search Flight:
 http://localhost:8082/flight/search/?fromPlace=Bangalore&toPlace=Delhi&flightDate=2022-04-29
+http://localhost:8082/flight/search/?fromPlace=Bangalore&toPlace=Delhi&flightDate=2022-04-29&returnDate=2022-04-30
 
 
 
