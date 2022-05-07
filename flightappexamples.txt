@@ -1,7 +1,7 @@
 URLs:
 User Service:   http://localhost:8081
 Admin Service:  http://localhost:8082
-API Gateway:    http://localhost:6666
+API Gateway:    http://localhost:7789
 Eureka Server:  http://localhost:8761
 
 
@@ -80,7 +80,7 @@ Flight Register:
 (Using gateway api:)
 http://localhost:8081/api/v1.0/flight/airline/register
 or
-http://localhost:6666/api/v1.0/flight/airline/register
+http://localhost:7789/api/v1.0/flight/airline/register
 
 {
     "name": "Indigo",
@@ -92,7 +92,7 @@ http://localhost:6666/api/v1.0/flight/airline/register
 
 
 Add Schedule:
-http://localhost:6666/flight/airline/schedule/add
+http://localhost:7789/flight/airline/schedule/add
 {
     "airline": {
 		"id": 1,
@@ -129,7 +129,7 @@ http://localhost:6666/flight/airline/schedule/add
 
 
 Get Airline List:
-http://localhost:6666/flight/airline/list
+http://localhost:7789/flight/airline/list
 
 
 
@@ -150,6 +150,12 @@ where 1 is the scheduleId
 	[
 		{
 			"name": "Passenger 1",
+			"gender": "MALE",
+			"ageGroup": "ADULT",
+			"mealOption": "VEG"
+		},
+		{
+			"name": "Passenger 2",
 			"gender": "MALE",
 			"ageGroup": "ADULT",
 			"mealOption": "VEG"
