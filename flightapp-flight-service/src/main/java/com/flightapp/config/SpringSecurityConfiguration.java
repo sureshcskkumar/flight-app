@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -40,6 +41,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/flight/search/**").permitAll()
+		.antMatchers("/swagger-ui.html").permitAll()
+		.antMatchers("/swagger-ui/**").permitAll()
+		.antMatchers("/v3/api-docs/**").permitAll()
 		.antMatchers("/flight/airline/**").hasRole("ADMIN")
 		.antMatchers("/flight/booking/**").hasRole("USER")
 		.anyRequest().authenticated()
@@ -48,6 +52,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		and().addFilterBefore(customJwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
-
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+			.antMatchers("/swagger-ui/**")
+			.antMatchers("/swagger-ui.html")
+			.antMatchers("/swagger-ui/**")
+			.antMatchers("/v3/api-docs/**");
+	}
 
 }
