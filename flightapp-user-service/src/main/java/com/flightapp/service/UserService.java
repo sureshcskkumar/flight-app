@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.flightapp.config.JwtUtil;
 import com.flightapp.entity.AppUser;
+import com.flightapp.exception.InvalidCredentialsException;
+import com.flightapp.exception.UserAlraedyRegisteredException;
 import com.flightapp.model.AuthenticationRequest;
 import com.flightapp.model.AuthenticationResponse;
 import com.flightapp.model.UserDTO;
@@ -39,13 +41,14 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public ResponseEntity<?> save(UserDTO user) {
+	public ResponseEntity<?> save(UserDTO user) throws UserAlraedyRegisteredException {
 		
 		List<AppUser> userList = userRepository.findByEmail(user.getEmail());
 		
 		if (userList != null && userList.size() > 0) {
-			return new ResponseEntity<>("User with the email " + user.getEmail() + " already exists!",
-					HttpStatus.BAD_REQUEST);
+			//return new ResponseEntity<>("User with the email " + user.getEmail() + " already exists!",
+					// HttpStatus.BAD_REQUEST);
+			throw new UserAlraedyRegisteredException("User Already registered!");
 		}
 		
 		AppUser newUser = new AppUser();
@@ -66,7 +69,7 @@ public class UserService {
 			throw new Exception("USER_DISABLED", e);
 		}
 		catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+			throw new InvalidCredentialsException(e.getMessage());
 		}
 		
 		UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
