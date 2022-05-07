@@ -39,8 +39,8 @@ public class BookingServiceImpl implements BookingService {
 		Optional<Schedule> scheduleOptional = scheduleRepository.findById(scheduleId);
 		Schedule schedule = scheduleOptional.get();
 		String airlineName = schedule.getAirline().getName();
-		String pnrString = userEmail + LocalDateTime.now();
-		UUID pnr = UUID.nameUUIDFromBytes(pnrString.getBytes());
+		// String pnrString = userEmail + LocalDateTime.now();
+		// UUID pnr = UUID.nameUUIDFromBytes(pnrString.getBytes());
 		
 		int adultAndChildPassengerCount = 0;
 		
@@ -51,6 +51,9 @@ public class BookingServiceImpl implements BookingService {
 					return new ResponseEntity("There isn't enough Vacant Seats!", HttpStatus.BAD_REQUEST);
 				}
 			}
+			
+			String pnrString = userEmail + passenger.getName() + LocalDateTime.now();
+			UUID pnr = UUID.nameUUIDFromBytes(pnrString.getBytes());
 			
 			Ticket ticket = new Ticket(
 					airlineName,
