@@ -28,7 +28,7 @@ public class ScheduleController {
 	}
 	
 	@GetMapping("/airline/getschedules")
-	public ResponseEntity<List<Schedule>> getSchedules(@RequestBody Schedule schedule){
+	public ResponseEntity<List<Schedule>> getSchedules(){
 		return scheduleService.getSchedules();
 	}
 }
