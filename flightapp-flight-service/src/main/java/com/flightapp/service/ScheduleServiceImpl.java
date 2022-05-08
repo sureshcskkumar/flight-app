@@ -30,4 +30,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 		}
 		return new ResponseEntity<>(scheduleRepository.save(schedule), HttpStatus.OK);
 	}
+
+	@Override
+	public ResponseEntity<List<Schedule>> getSchedules() {
+		return new ResponseEntity<>(scheduleRepository.findAll(), HttpStatus.OK);
+	}
 }
