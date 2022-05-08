@@ -41,7 +41,9 @@ public class SearchServiceImpl implements SearchService {
 		List<SearchResultEntity> searchResulList = new ArrayList<>();
 		if (flightSchedules != null && flightSchedules.size() > 0) {
 			for (Schedule schedule : flightSchedules) {
+				if (!schedule.getAirline().isBlocked()) {
 					searchResulList.add(new SearchResultEntity(schedule));
+				}
 			}
 		}
 		return searchResulList;
