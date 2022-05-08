@@ -40,4 +40,10 @@ public class BookedPassengerTicket {
 		this.timeOfBooking = timeOfBooking;
 	}
 
+	@Override
+	public String toString() {
+		return "BookedPassengerTicket [id=" + id + ", ticketId=" + ticketId + ", PassengerName=" + PassengerName
+				+ ", timeOfBooking=" + timeOfBooking + "]";
+	}
+
 }

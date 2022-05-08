@@ -79,12 +79,16 @@ public class BookingServiceImpl implements BookingService {
 		
 		
 		tickets = ticketRepository.saveAll(tickets);
-		for (Ticket ticket: tickets) {
-			BookedPassengerTicket passengerTicket = new BookedPassengerTicket(ticket.getId(), ticket.getName(), LocalDateTime.now());
-			//kafkaTemplate.send(TOPIC, passengerTicket);
-		}
+		
 		schedule.setNumberOfVacantSeats(schedule.getNumberOfVacantSeats() - adultAndChildPassengerCount);
 		scheduleRepository.save(schedule);
+		
+		for (Ticket ticket: tickets) {
+			BookedPassengerTicket passengerTicket = new BookedPassengerTicket(ticket.getId(), ticket.getName(), LocalDateTime.now());
+			System.out.println("passengerTicket: " + passengerTicket);
+			kafkaTemplate.send(TOPIC, passengerTicket);
+		}
+
 
 		
 		return new ResponseEntity<>(tickets, HttpStatus.OK);
