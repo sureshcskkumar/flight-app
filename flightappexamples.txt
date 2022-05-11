@@ -170,3 +170,56 @@ where 1 is the scheduleId
 
 Booking History for a logged in user:
 http://localhost:8082/flight/booking/history
+
+
+
+
+
+
+---------------------------------------------------------------------------------------
+For AWS:
+clean compile package -Dmaven.test.skip=true
+
+In EC2 instance:
+sudo yum install java-1.8.0-openjdk
+wget https://sureshcsk.s3.us-west-2.amazonaws.com/flightapp-eurekaserver-0.0.1-SNAPSHOT.jar
+wget https://sureshcsk.s3.us-west-2.amazonaws.com/flightapp-flight-service-0.0.1-SNAPSHOT.jar
+wget https://sureshcsk.s3.us-west-2.amazonaws.com/flightapp-gateway-0.0.1-SNAPSHOT.jar
+wget https://sureshcsk.s3.us-west-2.amazonaws.com/flightapp-user-service-0.0.1-SNAPSHOT.jar
+
+
+Eureka:
+java -jar flightapp-eurekaserver-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=production flightapp-eurekaserver-0.0.1-SNAPSHOT.jar
+nohup java -jar -Dspring.profiles.active=production flightapp-eurekaserver-0.0.1-SNAPSHOT.jar > log_eureka.txt 2>&1 &
+
+
+Gateway:
+java -jar flightapp-gateway-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=production flightapp-gateway-0.0.1-SNAPSHOT.jar
+nohup java -jar -Dspring.profiles.active=production flightapp-gateway-0.0.1-SNAPSHOT.jar  > log_gateway.txt 2>&1 &
+
+
+Flightapp-user-service:
+java -jar flightapp-user-service-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=production flightapp-user-service-0.0.1-SNAPSHOT.jar
+nohup java -jar -Dspring.profiles.active=production flightapp-user-service-0.0.1-SNAPSHOT.jar > log_userservice.txt 2>&1 &
+
+
+Flightapp-flight-service:
+java -jar flightapp-flight-service-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=production flightapp-flight-service-0.0.1-SNAPSHOT.jar
+nohup java -jar -Dspring.profiles.active=production flightapp-flight-service-0.0.1-SNAPSHOT.jar > log_flightservice.txt 2>&1 &
+---------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------
+AWS for frontend:
+wget https://sureshcsk.s3.us-west-2.amazonaws.com/flight-app-frontend.zip
+
+nohup npm run start > log_start.txt 2>&1 &
+nohup ng serve --host 0.0.0.0 --port 4200 > log_start.txt 2>&1 &
+
+---------------------------------------------------------------------------------------
