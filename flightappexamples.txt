@@ -222,4 +222,6 @@ wget https://sureshcsk.s3.us-west-2.amazonaws.com/flight-app-frontend.zip
 nohup npm run start > log_start.txt 2>&1 &
 nohup ng serve --host 0.0.0.0 --port 4200 > log_start.txt 2>&1 &
 
+
+nohup ng serve --host 0.0.0.0 --port 4200 --disable-host-check > log_start.txt 2>&1 &
 ---------------------------------------------------------------------------------------
